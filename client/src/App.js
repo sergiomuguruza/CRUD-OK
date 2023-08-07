@@ -52,7 +52,7 @@ function App() {
         setAños(event.target.value);
       }}
       type="number"/></label>
-       <button onClick={App}>Registrar</button>     
+       <button onClick={add}>Registrar</button>     
       </div>
     </div>
   );
