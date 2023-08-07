@@ -19,7 +19,7 @@ function App() {
       Cargo:Cargo,
       Años:Años,
     }).then(() =>{
-      alert("el empleado se registro correctamente");
+      alert("el empleado se ha registro correctamente");
     });
   }
 
