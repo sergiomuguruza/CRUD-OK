@@ -1,8 +1,8 @@
 { "homepage":"https://sergiomuguruza.github.io/CRUD-OK",
   "devDependencies": {
     "gh-pages": "^5.0.0"
-  }
-  "scripts": {
+  },
+    "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d crud-ok",
     "start": "react-scripts start",
