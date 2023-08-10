@@ -16,8 +16,8 @@ body {
 }
 
 .container {
-  background-color: white;
-  padding: 40px; /* Aumentamos el espacio interno */
+  background-color: rgb(244, 248, 243);
+  padding: 80px; /* Aumentamos el espacio interno */
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 80%; /* Cambiamos a un ancho fijo */
@@ -60,4 +60,17 @@ button {
 
 button:hover {
   background-color: #0056b3;
+}
+
+.success-alert {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #28a745;
+  color: white;
+  padding: 35px 80px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
 }

@@ -1,6 +1,7 @@
 import './App.css';
-import { useState } from 'react';
 import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import './styles.css';
 
 function App() {
   const [Nombre, setNombre] = useState("");
@@ -8,6 +9,27 @@ function App() {
   const [Pais, setPais] = useState("");
   const [Cargo, setCargo] = useState("");
   const [Años, setAños] = useState(0);
+  const [isFormValid, setIsFormValid] = useState(false);
+  const [employeeList, setEmployeeList] = useState([]);
+
+  const validateForm = () => {
+    if (Nombre !== "" && Edad !== "" && Pais !== "" && Cargo !== "" && Años !== "") {
+      setIsFormValid(true);
+    } else {
+      setIsFormValid(false);
+    }
+  }
+
+  useEffect(() => {
+    axios.get("http://localhost:3001/employees")
+      .then(response => {
+        setEmployeeList(response.data);
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.error("Error al obtener la lista de empleados:", error);
+      });
+  }, []);
 
   const add = () => {
     axios.post("http://localhost:3001/create", {
@@ -17,8 +39,40 @@ function App() {
       Cargo: Cargo,
       Años: Años,
     }).then(() => {
-      alert("El empleado se ha registrado correctamente");
+      const successAlert = document.createElement('div');
+      successAlert.className = 'success-alert';
+      successAlert.innerText = 'El empleado se ha registrado correctamente';
+      document.body.appendChild(successAlert);
+
+      setTimeout(() => {
+        successAlert.remove();
+      }, 3000); // Desaparece después de 3 segundos
     });
+  }
+
+  const handleNombreChange = (event) => {
+    setNombre(event.target.value);
+    validateForm();
+  }
+
+  const handleEdadChange = (event) => {
+    setEdad(event.target.value);
+    validateForm();
+  }
+
+  const handlePaisChange = (event) => {
+    setPais(event.target.value);
+    validateForm();
+  }
+
+  const handleCargoChange = (event) => {
+    setCargo(event.target.value);
+    validateForm();
+  }
+
+  const handleAñosChange = (event) => {
+    setAños(event.target.value);
+    validateForm();
   }
 
   return (
@@ -29,34 +83,44 @@ function App() {
           <label htmlFor="nombre">Nombre:</label>
           <input
             id="nombre"
-            onChange={(event) => setNombre(event.target.value)}
+            onChange={handleNombreChange}
             type="text"
           />
           <label htmlFor="edad">Edad:</label>
           <input
             id="edad"
-            onChange={(event) => setEdad(event.target.value)}
+            onChange={handleEdadChange}
             type="number"
           />
           <label htmlFor="pais">Pais:</label>
           <input
             id="pais"
-            onChange={(event) => setPais(event.target.value)}
+            onChange={handlePaisChange}
             type="text"
           />
           <label htmlFor="cargo">Cargo:</label>
           <input
             id="cargo"
-            onChange={(event) => setCargo(event.target.value)}
+            onChange={handleCargoChange}
             type="text"
           />
           <label htmlFor="anos">Años:</label>
           <input
             id="anos"
-            onChange={(event) => setAños(event.target.value)}
+            onChange={handleAñosChange}
             type="number"
           />
-          <button onClick={add}>Registrar</button>
+          <button onClick={add} disabled={!isFormValid}>Registrar</button>
+        </div>
+        <div className="employee-list">
+          <h2>Lista de Empleados</h2>
+          <ul>
+            {employeeList.map(employee => (
+              <li key={employee.id}>
+                Nombre: {employee.Nombre}, Edad: {employee.Edad}, País: {employee.Pais}, Cargo: {employee.Cargo}, Años: {employee.Años}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
