@@ -35,36 +35,16 @@ app.post("/create", (req, res) => {
     );
 });
 
-// Obtener la lista de empleados
-app.get('/employees', (req, res) => {
-    db.query("SELECT * FROM empleados", (err, results) => {
-        if (err) {
-            console.log(err);
-        } else {
-            const employeeListHTML = results.map(employee => `
-                <li>
-                    <strong>Nombre:</strong> ${employee.nombre}<br>
-                    <strong>Edad:</strong> ${employee.edad}<br>
-                    <strong>País:</strong> ${employee.pais}<br>
-                    <strong>Cargo:</strong> ${employee.cargo}<br>
-                    <strong>Años:</strong> ${employee.años}
-                </li>
-            `).join("");
-
-            const finalHTML = `
-                <div class="employee-list">
-                    <h2>Lista de Empleados</h2>
-                    <ul>
-                        ${employeeListHTML}
-                    </ul>
-                </div>
-            `;
-
-            res.send(finalHTML);
-        }
-    });
-});
-
+// Endpoint para obtener la lista de empleados
+app.get('/employees', async (req, res) => {
+    try {
+      const [results] = await db.promise().query("SELECT * FROM empleados");
+      res.json(results);
+    } catch (error) {
+      console.error("Error al obtener la lista de empleados:", error);
+      res.status(500).send("Error al obtener la lista de empleados");
+    }
+  });
 
 app.listen(3001, () => {
     console.log("corriendo en el puerto 3001");
