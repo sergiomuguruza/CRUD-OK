@@ -1,28 +1,24 @@
 .App {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center; /* Centrar verticalmente */
 }
 
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
   background-color: #f0f0f0;
 }
 
 .container {
   background-color: rgb(244, 248, 243);
-  padding: 80px; /* Aumentamos el espacio interno */
+  padding: 40px; /* Ajustamos el espacio interno */
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 80%; /* Cambiamos a un ancho fijo */
+  width: 90%; /* Aumentamos el ancho */
   max-width: 800px; /* Limitamos el ancho máximo */
-  margin: 0 auto; /* Centrar el contenedor horizontalmente */
+  margin: 40px auto; /* Centramos el contenedor horizontalmente */
 }
 
 h1 {
@@ -46,10 +42,16 @@ input {
   border-radius: 4px;
 }
 
+/* Añadimos una clase para separar los botones */
+.button-group {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
 button {
-  grid-column: span 2;
-  width: 100%;
-  padding: 10px;
+  width: 70%;
+  padding: 8px;
   background-color: #007bff;
   color: white;
   border: none;
@@ -69,7 +71,7 @@ button:hover {
   transform: translate(-50%, -50%);
   background-color: #28a745;
   color: white;
-  padding: 35px 80px;
+  padding: 20px 40px; /* Reducimos el padding */
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   z-index: 1000;

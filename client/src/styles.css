@@ -1,29 +1,21 @@
 /* styles.css */
+/* styles.css */
+
 .employee-list {
-    margin-top: 20px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    background-color: #f5f5f5;
-  }
-  
-  .employee-list h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .employee-list ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .employee-list li {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .employee-list li:last-child {
-    border-bottom: none;
-  }
+  background-color: #f7f7f7;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.employee-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: white;
+}
+
   
   /* Puedes agregar más estilos según tus preferencias */
   
