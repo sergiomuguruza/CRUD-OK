@@ -34,7 +34,7 @@ function App() {
   }
 
   useEffect(() => {
-    axios.get("http://localhost:3001/employees")
+    axios.get("http://200.7.138.110:3001/employees")
       .then(response => {
         setEmployeeList(response.data);
         console.log(response.data);
@@ -54,10 +54,10 @@ function App() {
     };
 
     if (Editar) {
-      axios.post(`http://localhost:3001/update/${id}`, newEmployee)
+      axios.post(`http://200.7.138.110:3001/update/${id}`, newEmployee)
         .then(() => {
           // Realiza una nueva llamada para obtener la lista actualizada
-          axios.get("http://localhost:3001/employees")
+          axios.get("http://200.7.138.110:3001/employees")
             .then(response => {
               setEmployeeList(response.data); // Actualiza la lista de empleados
               resetForm();
@@ -67,10 +67,10 @@ function App() {
             });
         });
     } else {
-      axios.post("http://localhost:3001/create", newEmployee)
+      axios.post("http://200.7.138.110:3001/create", newEmployee)
         .then(() => {
           // Realiza una nueva llamada para obtener la lista actualizada
-          axios.get("http://localhost:3001/employees")
+          axios.get("http://200.7.138.110:3001/employees")
             .then(response => {
               setEmployeeList(response.data); // Actualiza la lista de empleados
               resetForm();
@@ -118,7 +118,7 @@ function App() {
   }
 
   const eliminarEmpleado = (employeeId) => {
-    axios.delete(`http://localhost:3001/delete/${employeeId}`)
+    axios.delete(`http://200.7.138.110:3001/delete/${employeeId}`)
       .then(() => {
         // Actualizar la lista de empleados después de eliminar
         const updatedEmployeeList = EmployeeList.filter((employee) => employee.id !== employeeId);
